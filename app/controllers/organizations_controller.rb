@@ -52,7 +52,7 @@ class OrganizationsController < ApplicationController
 
   def update
     if params[:organization][:image]
-      ImageService.add_images(organization_params[:id],
+      ImageService.add_images(@organization.id,
                               'Organization',
                               params[:organization][:image])
     end
