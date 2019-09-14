@@ -97,4 +97,15 @@ RSpec.describe OrganizationsController do
       end
     end
   end
+  
+  describe 'PATCH leave' do
+    it 'leave current user' do
+      user = create(:user)
+      sign_in(user)
+      organization = create(:organization)
+      organization.users << user
+      patch :leave, params: {id: organization.id}
+      expect(Organization.find(organization.id).users.count).to eql(0)
+    end
+  end
 end
