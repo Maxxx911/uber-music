@@ -1,6 +1,9 @@
 class Organization < ApplicationRecord
   NUMBER_OF_GROUP = [0, 1, 2].freeze
 
+  validates :name, :description, presence: true
+  validates :users, presence: true, on: :update
+
   has_many :user_organizations
   has_many :users, through: :user_organizations
   has_many :organization_events
